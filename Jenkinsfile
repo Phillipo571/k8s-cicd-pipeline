@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         // 본인의 Docker Hub 계정 Username으로 반드시 변경!
-        DOCKER_HUB_ID = 'kylee413'
+        DOCKER_HUB_ID = 'phillip571'
         IMAGE_NAME = 'k8s-test-app'
         IMAGE_TAG = "${env.BUILD_NUMBER}" // Jenkins 빌드 번호를 태그(버전)로 자동 사용
     }
