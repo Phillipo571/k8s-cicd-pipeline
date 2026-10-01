@@ -30,4 +30,18 @@ pipeline {
             }
         }
     }
+
+    stage('Deploy to Kubernetes') {
+        steps {
+            script {
+                echo "Deploying to Kubernetes Cluster..."
+                // deployment.yaml의 이미지 버전을 방금 빌드한 새 버전으로 실시간 변경
+                sh "sed -i 's|phillip571/k8s-test-app:.*|phillip571/k8s-test-app:${IMAGE_TAG}|g' deployment.yaml"
+                    
+                // K8s 클러스터에 적용
+                sh "kubectl apply -f deployment.yaml"
+                sh "kubectl apply -f service.yaml"
+            }
+        }
+    }
 }
